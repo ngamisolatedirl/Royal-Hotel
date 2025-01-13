@@ -213,43 +213,51 @@ public class ReviewService {
     }
 
 
-    public Response updateReview(Integer reviewId, Review updatedReview, List<MultipartFile> reviewPhotos, String userEmail) {
-        Review review = reviewRepository.findById(reviewId).orElseThrow(() -> new RuntimeException("Review Not Found"));
 
-        if (!review.getUser().getEmail().equals(userEmail)) {
-            throw new AccessDeniedException("You can only update your own reviews.");
-        }
-
-        review.setRating(updatedReview.getRating());
-        if (isInputSafe(updatedReview.getReviewText())) {
-            review.setReviewText(updatedReview.getReviewText());
-        } else {
-            Response response = new Response();
-            response.setStatusCode(400);
-            response.setMessage("Review text contains unsafe content");
-            return response;
-        }
-
-        if (reviewPhotos != null && !reviewPhotos.isEmpty()) {
-            try {
-                List<String> imageUrls = uploadPhotos(reviewPhotos);
-                review.setPhotos(imageUrls);
-            } catch (RuntimeException e) {
-                Response response = new Response();
-                response.setStatusCode(500);
-                response.setMessage("Error uploading photos: " + e.getMessage());
-                return response;
-            }
-        }
-
-        reviewRepository.save(review);
-
+    public Response updateReview(Integer reviewId, Integer rating, String reviewText, List<MultipartFile> reviewPhotos) {
         Response response = new Response();
-        response.setStatusCode(200);
-        response.setMessage("Review updated successfully");
-        response.setData(Utils.mapReviewEntityToReviewDTO(review));
+        try {
+            List<String> imageUrls = null;
+            if (reviewPhotos != null && !reviewPhotos.isEmpty()) {
+                imageUrls = uploadPhotos(reviewPhotos);
+            }
+
+            Review review = reviewRepository.findById(reviewId)
+                    .orElseThrow(() -> new RuntimeException("Review Not Found"));
+
+            if (rating != null) review.setRating(rating);
+
+            if (reviewText != null) {
+                if (isInputSafe(reviewText)) {
+                    review.setReviewText(reviewText);
+                } else {
+                    response.setStatusCode(400);
+                    response.setMessage("Review text contains unsafe content");
+                    return response;
+                }
+            }
+
+            if (imageUrls != null && !imageUrls.isEmpty()) {
+                review.setPhotos(imageUrls);
+            }
+
+            reviewRepository.save(review);
+            ReviewDTO reviewDTO = Utils.mapReviewEntityToReviewDTO(review);
+            response.setStatusCode(200);
+            response.setMessage("Review updated successfully");
+            response.setData(reviewDTO);
+        } catch (RuntimeException e) {
+            response.setStatusCode(404);
+            response.setMessage(e.getMessage());
+        } catch (Exception e) {
+            response.setStatusCode(500);
+            response.setMessage("Error updating review: " + e.getMessage());
+        }
         return response;
     }
+
+
+
 
 
 

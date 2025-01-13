@@ -30,6 +30,9 @@ public class ShuttleBooking {
 
     private String phone;
 
+    @Column(name = "description", columnDefinition = "TEXT")
+    private String description;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
@@ -46,6 +49,8 @@ public class ShuttleBooking {
                 ", shuttleCheckOutDate=" + shuttleCheckOutDate +
                 ", bookingConfirmationCode='" + bookingConfirmationCode + '\'' +
                 ", totalPrice=" + totalPrice +
+                ", phone='" + phone + '\'' +
+                ", description='" + description + '\'' +
                 ", user=" + user +
                 ", shuttle=" + shuttle +
                 '}';

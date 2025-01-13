@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import org.aspectj.weaver.loadtime.definition.Definition;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -32,6 +33,9 @@ public class RestaurantBooking {
     @NotNull(message = "Phone number is required")
     private String phone;
 
+    @Column(name = "description",  columnDefinition = "TEXT")
+    private String description;
+
     private BigDecimal totalPrice;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -51,6 +55,7 @@ public class RestaurantBooking {
                 ", numOfChildren=" + numOfChildren +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
+                ", description='" + description + '\'' +
                 ", totalPrice=" + totalPrice +
                 ", user=" + user +
                 ", restaurant=" + restaurant +

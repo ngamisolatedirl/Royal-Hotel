@@ -89,20 +89,22 @@ public class Utils {
         shuttleBookingDTO.setTotalPrice(shuttleBooking.getTotalPrice());
         shuttleBookingDTO.setUserEmail(shuttleBooking.getUser().getEmail());
         shuttleBookingDTO.setPhone(shuttleBooking.getPhone());
+        shuttleBookingDTO.setDescription(shuttleBooking.getDescription());
 
         shuttleBookingDTO.setUser(mapUserEntityToUserDTO(shuttleBooking.getUser()));
         shuttleBookingDTO.setShuttle(mapShuttleEntityToShuttleDTO(shuttleBooking.getShuttle()));
 
+        // shuttleBookingDTO.setCarId(shuttle.getId());
+        // shuttleBookingDTO.setCarType(shuttle.getCarType());
+        // shuttleBookingDTO.setCarPrice(shuttle.getCarPrice());
+        // shuttleBookingDTO.setPhotos(shuttle.getPhotos());
+        // shuttleBookingDTO.setCarDescription(shuttle.getCarDescription());
+        // shuttleBookingDTO.setBranchId(shuttleBooking.getShuttle().getBranch().getId());
+        // shuttleBookingDTO.setBranchName(shuttleBooking.getShuttle().getBranch().getBranchName());
 
-//        shuttleBookingDTO.setCarId(shuttle.getId());
-//        shuttleBookingDTO.setCarType(shuttle.getCarType());
-//        shuttleBookingDTO.setCarPrice(shuttle.getCarPrice());
-//        shuttleBookingDTO.setPhotos(shuttle.getPhotos());
-//        shuttleBookingDTO.setCarDescription(shuttle.getCarDescription());
-//        shuttleBookingDTO.setBranchId(shuttleBooking.getShuttle().getBranch().getId());
-//        shuttleBookingDTO.setBranchName(shuttleBooking.getShuttle().getBranch().getBranchName());
         return shuttleBookingDTO;
     }
+
 
     public static ShuttleBookingDTO mapShuttleBookingEntityToShuttleBookingDTOPlusShuttle(ShuttleBooking shuttleBooking) {
         ShuttleBookingDTO shuttleBookingDTO = mapShuttleBookingEntityToShuttleBookingDTO(shuttleBooking, shuttleBooking.getShuttle());
@@ -195,6 +197,7 @@ public class Utils {
         restaurantBookingDTO.setName(restaurantBooking.getName());
         restaurantBookingDTO.setPhone(restaurantBooking.getPhone());
         restaurantBookingDTO.setTotalPrice(restaurantBooking.getTotalPrice());
+        restaurantBookingDTO.setDescription(restaurantBooking.getDescription());
         restaurantBookingDTO.setUserEmail(restaurantBooking.getUser().getEmail());
         restaurantBookingDTO.setUser(Utils.mapUserEntityToUserDTO(restaurantBooking.getUser()));
         restaurantBookingDTO.setRestaurant(Utils.mapRestaurantEntityToRestaurantDTO(restaurantBooking.getRestaurant()));

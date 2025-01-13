@@ -54,6 +54,10 @@ public class RestaurantBookingService implements IRestaurantBookingService {
             restaurantBooking.setNumOfChildren(restaurantBookingRequest.getNumOfChildren());
             restaurantBooking.setName(restaurantBookingRequest.getName());
             restaurantBooking.setPhone(restaurantBookingRequest.getPhone());
+            restaurantBooking.setDescription(restaurantBookingRequest.getDescription());
+            if (restaurantBooking.getDescription() != null) {
+                restaurantBooking.setDescription(restaurantBooking.getDescription());
+            }
 
             // Calculate the total price
             BigDecimal totalPrice = restaurant.getRestaurantAdultPrice().multiply(BigDecimal.valueOf(restaurantBooking.getNumOfAdults()))

@@ -79,14 +79,19 @@ public class ReviewController {
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<Response> updateReview(
             @PathVariable Integer id,
-            @RequestBody Review review,
+            @RequestParam(required = false) Integer rating,
+            @RequestParam(required = false) String reviewText,
             @RequestParam(required = false) List<MultipartFile> reviewImages) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userEmail = authentication.getName();
-        Response response = reviewService.updateReview(id, review, reviewImages, userEmail);
+
+        Response response = reviewService.updateReview(id, rating, reviewText, reviewImages);
+
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
+
+
 
     @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")

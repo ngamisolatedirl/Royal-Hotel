@@ -16,6 +16,7 @@ public class ShuttleBookingDTO {
     private String phone;
     private String bookingConfirmationCode;
     private BigDecimal totalPrice;
+    private String description;
 
 //    private Long carId;
 //    private String carType;
