@@ -19,5 +19,6 @@ public class RoomPaymentDTO {
     private String paymentStatus;
     private String currency;
     private String description;
+    private String note;
 
 }

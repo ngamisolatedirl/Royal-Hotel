@@ -38,6 +38,9 @@ public class Payment {
     @Column(name = "ModeOfPayment", length = 50)
     private String modeOfPayment;
 
+    @Column(name = "Note", columnDefinition = "TEXT")
+    private String note;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "booking_id", nullable = false)
     private Booking booking;
@@ -50,7 +53,7 @@ public class Payment {
     }
 
 
-    public Payment(Long paymentID, String chooseMethod, Long paymentMethodID, LocalDateTime paymentDate, BigDecimal amount, String paymentStatus, String transactionCode, String currency, String description, String modeOfPayment, Booking booking, User user) {
+    public Payment(Long paymentID, String chooseMethod, Long paymentMethodID, LocalDateTime paymentDate, BigDecimal amount, String paymentStatus, String transactionCode, String currency, String description, String modeOfPayment,String note, Booking booking, User user) {
         this.paymentID = paymentID;
         this.chooseMethod = chooseMethod;
         this.paymentMethodID = paymentMethodID;
@@ -63,6 +66,7 @@ public class Payment {
         this.modeOfPayment = modeOfPayment;
         this.booking = booking;
         this.user = user;
+        this.note = note;
     }
 
     public Long getPaymentID() {
@@ -160,4 +164,8 @@ public class Payment {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public String getNote() {return note;}
+
+    public void setNote(String note) {this.note = note;}
 }

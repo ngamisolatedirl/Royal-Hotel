@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 public class Utils {
 
-    private static final String ALPHANUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    private static final String ALPHANUMERIC_STRING = "123456789";
     private static final SecureRandom secureRandom = new SecureRandom();
     private static final Logger logger = LoggerFactory.getLogger(Utils.class);    // Generate random confirmation code
     public static String generateRandomConfirmationCode(int length) {
@@ -256,6 +256,7 @@ public class Utils {
         roomPaymentDTO.setModeOfPayment(payment.getModeOfPayment());
         roomPaymentDTO.setBookingId(payment.getBooking().getBookingId());
         roomPaymentDTO.setUserId(payment.getUser().getId());
+        roomPaymentDTO.setNote(payment.getNote());
 
         return roomPaymentDTO;
     }

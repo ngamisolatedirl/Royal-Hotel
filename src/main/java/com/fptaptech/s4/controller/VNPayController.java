@@ -106,6 +106,7 @@ public class VNPayController {
         payment.setCurrency("VND");
         payment.setChooseMethod(chooseMethod);
         payment.setDescription("Thanh toán qua VNPay");
+        payment.setNote(".");
 
         if (paymentStatus == 1) {
             payment.setPaymentStatus("Approved");

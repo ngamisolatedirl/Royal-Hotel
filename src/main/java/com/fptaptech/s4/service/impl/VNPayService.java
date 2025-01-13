@@ -139,7 +139,7 @@ public class VNPayService {
             Payment payment = paymentRepository.findById(id)
                     .orElseThrow(() -> new OurException("Payment Not Found"));
 
-            // Update only the provided fields
+
             if (paymentDetails.getAmount() != null) {
                 payment.setAmount(paymentDetails.getAmount());
             }
@@ -167,6 +167,10 @@ public class VNPayService {
             if (paymentDetails.getDescription() != null) {
                 payment.setDescription(paymentDetails.getDescription());
             }
+            if (paymentDetails.getNote() != null) {
+                payment.setNote(paymentDetails.getNote());
+            }
+
 
             Payment updatedPayment = paymentRepository.save(payment);
             RoomPaymentDTO updatedPaymentDTO = Utils.mapPaymentEntityToPaymentDTO(updatedPayment);
