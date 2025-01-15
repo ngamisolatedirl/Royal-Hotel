@@ -48,7 +48,7 @@ public class VNPayController {
         if ("Deposit".equalsIgnoreCase(modeOfPayment)) {
             totalAmount = totalAmount.multiply(BigDecimal.valueOf(0.50)); // 50% deposit
         } else {
-            totalAmount = totalAmount.multiply(BigDecimal.valueOf(0.95)); // 95% full payment
+            totalAmount = totalAmount.multiply(BigDecimal.valueOf(1.0)); // 100% full payment
         }
 
         // Automatically determine chooseMethod

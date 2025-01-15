@@ -13,6 +13,7 @@ public class ServicePaymentDTO {
     private String transactionCode;
     private String currency;
     private String description;
+    private Long shuttleBookingId;
     private Long spaBookingId;
     private Long restaurantBookingId;
     private Long userId;
@@ -112,5 +113,13 @@ public class ServicePaymentDTO {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Long getShuttleBookingId() {
+        return shuttleBookingId;
+    }
+
+    public void setShuttleBookingId(Long shuttleBookingId) {
+        this.shuttleBookingId = shuttleBookingId;
     }
 }

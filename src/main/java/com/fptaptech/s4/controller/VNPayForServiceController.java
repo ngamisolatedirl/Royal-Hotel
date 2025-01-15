@@ -10,6 +10,7 @@ import com.fptaptech.s4.repository.VNPayForServiceRepository;
 import com.fptaptech.s4.service.impl.VNPayForService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -143,7 +144,11 @@ public class VNPayForServiceController {
             response.put("transactionId", transactionId);
             response.put("paymentStatus", paymentStatus);
 
-            return ResponseEntity.ok(response);
+//            return ResponseEntity.ok(response);
+
+            return ResponseEntity.status(HttpStatus.FOUND)
+                    .header(HttpHeaders.LOCATION, "http://localhost:5173/thank/" + bookingId)
+                    .body(response);
 
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

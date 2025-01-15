@@ -301,6 +301,10 @@ public class Utils {
             dto.setRestaurantBookingId(servicePayment.getRestaurantBooking().getId());
         }
 
+        if (servicePayment.getShuttleBooking() != null) {
+            dto.setShuttleBookingId(servicePayment.getShuttleBooking().getId());
+        }
+
         if (servicePayment.getUser() != null) {
             dto.setUserId(servicePayment.getUser().getId());
         }
